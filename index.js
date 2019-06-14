@@ -113,4 +113,4 @@ restService.post('/webhook', function(req, res) {
   const url = await ngrok.connect(8000);
   console.log(url);
 })();*/
-restService.listen(8000, () => console.log('Express server is listening on port 8000'));
+restService.listen((process.env.PORT || 8000), () => console.log('Express server is listening on port 8000'));
