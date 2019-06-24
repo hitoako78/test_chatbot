@@ -1,5 +1,6 @@
 //yurzavertu@desoz.com
 //hitoako78@gmail.com
+//`1Diagchat
 'use strict';
 
 const express = require('express');
@@ -76,9 +77,9 @@ restService.post('/gen_details', function(req, res) {
 });
 
 
-/*(async function() {
+(async function() {
   const url = await ngrok.connect(8000);
   console.log(url);
   restUrl = url;
-})();*/
+})();
 restService.listen((process.env.PORT || 8000), () => console.log('Express server is listening on port 8000'));
