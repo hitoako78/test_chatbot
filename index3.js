@@ -1,6 +1,5 @@
 //yurzavertu@desoz.com
 //hitoako78@gmail.com
-//`1Diagchat
 'use strict';
 
 const express = require('express');
@@ -70,6 +69,54 @@ restService.post('/gen_details', function(req, res) {
              "redirect_to_blocks": [langPrefix + " Registration Part 2"]
            }
     }
+    console.log(jsonResponse);
+    res.send(jsonResponse);
+
+
+});
+
+
+restService.post('/save_gen_details', function(req, res) {
+    console.log("restService post");
+    console.log(req.body);
+   
+    var jsonResponse = {};
+    
+    var first_name = req.body.first_name;
+    var middle_name = req.body.middle_name;
+    var last_name = req.body.last_name;
+    var gender = req.body.sex;
+    var b_date = req.body.b_date;
+    var cel_no = req.body.cel_no;
+    var email = req.body.email;
+    var address = req.body.address;
+    var four_p_num = req.body.four_p_num;
+    var gov_id_type = req.body.gov_id_type;
+    var gov_id = req.body.gov_id;
+    
+    MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
+       if (err) throw err;
+           var dbo = db.db("mydb");
+           /*var genDetails= {
+                            first_name : first_name ,
+                            middle_name : middle_name ,
+                            last_name : last_name,
+                            gender: gender,
+                            b_date : b_date,
+                            cel_no : cel_no ,
+                            email : email ,
+                            address : address ,
+                            four_p_num : four_p_num ,
+                            gov_id_type : gov_id_type ,
+                            gov_id : gov_id 
+                           };
+           console.log(genDetails);*/
+           dbo.collection("customers").insertOne(req.body, function(err, res) {
+           if (err) throw err;
+               console.log("1 document inserted");
+           db.close();
+        });
+    }); 
     console.log(jsonResponse);
     res.send(jsonResponse);
 
